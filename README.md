@@ -12,6 +12,14 @@ The objective of this project is to design and develop a small but feature-compl
 **Shane** - Stats and leveling, Saving stats, Respawning  
 **Elise** - Dialogue, Menu and Options Menu, Saving Options 
 
+### Version Control Techniques
+- Branches will be named Featurname_contributorname eg. MainMenu_Elise
+- All branches will be off the dev branch
+- Once a branch is ready to be merged, we will submit a pull request and another contributor will review it
+- Commit every time you complete a function, or at least commit regularly
+- Dot points for commit messsages
+- Commits should be named after the function they changed or created, and describe what state the features created/changed are in and what they do
+
 ### Project Features & Scope
 
 #### Menu and Options Menu 
