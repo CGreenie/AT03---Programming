@@ -1,16 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float reach = 3f;            // Interaction Distance
+
+    //public Image crosshair;           // Crosshair Link
+    //public Text infoPanel;            // Text UI Link
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Debug.DrawRay(this.transform.position, this.transform.forward * reach, Color.blue, 0.01f);
     }
 }

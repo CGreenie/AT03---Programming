@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd82780fc13d494596bcb13c2722c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  reach: 3
 --- !u!1 &966020452
 GameObject:
   m_ObjectHideFlags: 0
