@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -5,11 +6,8 @@ using UnityEngine.UI;
 public class Options : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] GameObject resolution_Dropdown;
-    [SerializeField] Button Forward;
-    [SerializeField] Button Left;
-    [SerializeField] Button Right;
-    [SerializeField] Button Back;
+    [SerializeField] TMP_Dropdown resolution_Dropdown;
+   
 
     public InputActionAsset inputActions;
 
@@ -18,26 +16,9 @@ public class Options : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (!PlayerPrefs.HasKey("Forward"))
-        {
-            PlayerPrefs.SetString("Forward", "W");
-        }
-        if (!PlayerPrefs.HasKey("Left"))
-        {
-            PlayerPrefs.SetString("Left", "A");
-        }
-        if (!PlayerPrefs.HasKey("Right"))
-        {
-            PlayerPrefs.SetString("Right", "D");
-        }
-        if (!PlayerPrefs.HasKey("Back"))
-        {
-            PlayerPrefs.SetString("Back", "S");
-        }
-
         if (!PlayerPrefs.HasKey("resolution"))
         {
-            PlayerPrefs.SetInt("resolution", 1080);
+            PlayerPrefs.SetInt("resolution", 0);
             
         }
             
@@ -68,6 +49,7 @@ public class Options : MonoBehaviour
         {
             Screen.SetResolution(3840, 2160, FullScreenMode.FullScreenWindow);
         }
+        Save(temp_resolution);
     }
     public void ChangeVolume()
     {
@@ -78,26 +60,30 @@ public class Options : MonoBehaviour
     private void Load()
     {
         int temp_resolution = PlayerPrefs.GetInt("resolution");
-        if (temp_resolution == 1080)
+        if (temp_resolution == 0)
         {
             Screen.SetResolution(1920, 1080, FullScreenMode.FullScreenWindow);
+            resolution_Dropdown.value = 0;
         }
-        if (temp_resolution == 720)
+        if (temp_resolution == 1)
         {
             Screen.SetResolution(1280, 720, FullScreenMode.FullScreenWindow);
+            resolution_Dropdown.value = 1;
         }
-        if (temp_resolution == 2160)
+        if (temp_resolution == 2)
         {
             Screen.SetResolution(3840, 2160, FullScreenMode.FullScreenWindow);
+            resolution_Dropdown.value = 2;
         }
 
-       //inputActions.
+       
 
         
     }
     
-    private void Save()
+    private void Save(int resolution = 0)
     {
+        PlayerPrefs.SetInt("resolution", resolution);
         PlayerPrefs.Save();
     }
 }
