@@ -1675,7 +1675,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolution_Dropdown: {fileID: 2126317442}
-  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &551570532
 GameObject:
   m_ObjectHideFlags: 0

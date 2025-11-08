@@ -42,6 +42,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         {
             string currentBindings = actionReference.action.actionMap.SaveBindingOverridesAsJson();
             PlayerPrefs.SetString(m_Action.action.name + bindingId, currentBindings);
+            PlayerPrefs.Save();
         }
 
         private void LoadActionBinding()

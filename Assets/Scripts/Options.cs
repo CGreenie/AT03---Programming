@@ -9,7 +9,7 @@ public class Options : MonoBehaviour
     [SerializeField] TMP_Dropdown resolution_Dropdown;
    
 
-    public InputActionAsset inputActions;
+    
 
 
 
