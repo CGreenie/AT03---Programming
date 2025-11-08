@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 
 ////TODO: localization support
 
@@ -18,6 +19,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
     
     public class RebindActionUI : MonoBehaviour
     {
+        
         /// <summary>
         /// Reference to the action that is to be rebound.
         /// </summary>
@@ -42,6 +44,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         {
             string currentBindings = actionReference.action.actionMap.SaveBindingOverridesAsJson();
             PlayerPrefs.SetString(m_Action.action.name + bindingId, currentBindings);
+
             PlayerPrefs.Save();
         }
 
@@ -282,6 +285,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         private void PerformInteractiveRebind(InputAction action, int bindingIndex, bool allCompositeParts = false)
         {
+            action.Disable();
             m_RebindOperation?.Cancel(); // Will null out m_RebindOperation.
 
             void CleanUp()
