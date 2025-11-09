@@ -9,8 +9,6 @@ public class DamageHealth : MonoBehaviour
     {
         Debug.Log($"Ouch by: {damage}");
 
-        Debug.Log($"{other.name} collided with Hazard Cube.");
-
         if (other.tag == "Player")
         {
             other.GetComponent<StatsAndLeveling>().TakeDamage(damage);
