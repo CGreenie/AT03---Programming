@@ -28,7 +28,7 @@ public class StatsAndLeveling : MonoBehaviour
         // TODO: call UI health bar to update
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         Debug.Log($"Health: {currentHealth}");
