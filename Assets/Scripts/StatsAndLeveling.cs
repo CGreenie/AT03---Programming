@@ -70,7 +70,6 @@ public class StatsAndLeveling : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) == true)
             {
-                GetComponent<PlayerController>().enabled = true;
                 Respawn();
             }
         }
@@ -78,15 +77,9 @@ public class StatsAndLeveling : MonoBehaviour
 
     public void Respawn()
     {
-        // Time.timeScale = 1f; // Resumes all game time
-        // currentHealth = maxHealth;
-
-        // Debug.Log($"Moving player to spawn point...Current Pos: {transform.position} too: {playerSpawnPoint}");
+        Time.timeScale = 01f;
         // GetComponent<PlayerController>().enabled = true;
-        // transform.position = playerSpawnPoint;
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
 
     public void Heal(int heal)
