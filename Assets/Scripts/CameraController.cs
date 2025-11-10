@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
         result += smoothing;
 
         // Clamping for gimble lock
-        result.y = Mathf.Clamp(result.y, -20, 20);
+        result.y = Mathf.Clamp(result.y, -60, 80);
 
         transform.localRotation = Quaternion.AngleAxis(-result.y, Vector3.right);
         character.rotation = Quaternion.AngleAxis(result.x, character.up);
