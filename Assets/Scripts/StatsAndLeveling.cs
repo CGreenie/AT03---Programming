@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /**
@@ -9,6 +10,7 @@ using UnityEngine;
 
 public class StatsAndLeveling : MonoBehaviour
 {
+    private Rigidbody playerPhysics;
     public int maxHealth = 100;
     public int minHealth = 0;
     public int currentHealth = 0;
@@ -38,10 +40,27 @@ public class StatsAndLeveling : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Debug.Log("Game Over.");
+            GameOver();
         }
 
         // TODO: Call UI health bar to update here
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over triggered.");
+
+        if (currentHealth <= minHealth)
+        {
+            GetComponent<PlayerController>().enabled = false;
+            Debug.Log("Game Over.");
+            Debug.Log("Press 'Spacebar' to respawn.");
+        }
+    }
+
+    public void Respawn()
+    {
+        
     }
 
     public void Heal(int heal)
