@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /**
  * By Shane Brooker
@@ -10,20 +11,29 @@ using UnityEngine;
 
 public class StatsAndLeveling : MonoBehaviour
 {
-    private Rigidbody playerPhysics;
+    private bool isGameOver = false;
     public int maxHealth = 100;
     public int minHealth = 0;
     public int currentHealth = 0;
 
     public int maxExperience = 100;
-    public int currentExperience = 0;
+    public static int currentExperience = 0; // Saved during lifetime of game
 
-    public int playerLevel = 1;
+    public static int playerLevel = 1; // Saved during lifetime of game
 
     void Start()
     {
         currentHealth = maxHealth;
-        // TODO: call UI health bar to update
+        Debug.Log($"Player Level: {playerLevel}");
+        Debug.Log($"Player Experience: {currentExperience} / {maxExperience}");
+    }
+
+    void Update()
+    {
+        if (isGameOver == true && Input.GetKeyDown(KeyCode.Space) == true)
+        {
+            Respawn();
+        }
     }
 
     public void TakeDamage(int damage)
@@ -42,8 +52,6 @@ public class StatsAndLeveling : MonoBehaviour
         {
             GameOver();
         }
-
-        // TODO: Call UI health bar to update here
     }
 
     public void GameOver()
@@ -53,14 +61,30 @@ public class StatsAndLeveling : MonoBehaviour
         if (currentHealth <= minHealth)
         {
             GetComponent<PlayerController>().enabled = false;
+            isGameOver = true;
+            Time.timeScale = 0f; // Stops all game time
+            Debug.Log("Game time stopped...");
+
             Debug.Log("Game Over.");
             Debug.Log("Press 'Spacebar' to respawn.");
+
+            if (Input.GetKeyDown(KeyCode.Space) == true)
+            {
+                Respawn();
+            }
         }
     }
 
     public void Respawn()
     {
-        
+        // Time.timeScale = 1f; // Resumes all game time
+        // currentHealth = maxHealth;
+
+        // Debug.Log($"Moving player to spawn point...Current Pos: {transform.position} too: {playerSpawnPoint}");
+        // GetComponent<PlayerController>().enabled = true;
+        // transform.position = playerSpawnPoint;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Heal(int heal)
@@ -74,26 +98,28 @@ public class StatsAndLeveling : MonoBehaviour
             currentHealth = maxHealth;
         }
         Debug.Log($"Player Health: {currentHealth}");
-        // TODO: Call UI health bar to update here
     }
 
     public void AddExperience(int experience)
     {
         currentExperience += experience;
+        Debug.Log($"Experience: {currentExperience} / {maxExperience}");
 
         if (currentExperience >= maxExperience)
         {
-            // Carry over XP above cap to next level
-            currentExperience -= maxExperience;
-            LevelUp(playerLevel);
+            playerLevel = LevelUp(playerLevel);
         }
-        Debug.Log($"Experience: {currentExperience} / {maxExperience}");
     }
 
-    void LevelUp(int currentLevel)
+    int LevelUp(int currentLevel)
     {
-        playerLevel += 1;
+        currentLevel += 1;
         Debug.Log("LEVEL UP!");
         Debug.Log($"Level: {currentLevel}");
+
+        // Carry over XP above cap to next level
+        currentExperience -= maxExperience;
+        Debug.Log($"Experience: {currentExperience} / {maxExperience}");
+        return currentLevel;
     }
 }
