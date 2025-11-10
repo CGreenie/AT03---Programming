@@ -18,11 +18,6 @@ public class StatsAndLeveling : MonoBehaviour
 
     public int playerLevel = 1;
 
-    // Testing variables
-    [Header("Testing Variables")]
-    public int damage = 0;
-    public int experience = 0;
-
     void Start()
     {
         currentHealth = maxHealth;
@@ -63,36 +58,23 @@ public class StatsAndLeveling : MonoBehaviour
         // TODO: Call UI health bar to update here
     }
 
-    void AddExperience(int experience)
+    public void AddExperience(int experience)
     {
         currentExperience += experience;
 
-        if (currentExperience > maxExperience)
+        if (currentExperience >= maxExperience)
         {
             // Carry over XP above cap to next level
             currentExperience -= maxExperience;
             LevelUp(playerLevel);
         }
+        Debug.Log($"Experience: {currentExperience} / {maxExperience}");
     }
 
     void LevelUp(int currentLevel)
     {
         playerLevel += 1;
-    }
-
-    // Testing Functions
-    [ContextMenu("Test TakeDamage")]
-    void TestDamage()
-    {
-        TakeDamage(damage);
-        Debug.Log($"Player Health: {currentHealth}");
-    }
-
-    [ContextMenu("Test AddExperience")]
-    void TestExperience()
-    {
-        AddExperience(experience);
-        Debug.Log($"Player Experience: {currentExperience}");
-        Debug.Log($"Player Level:      {playerLevel}");
+        Debug.Log("LEVEL UP!");
+        Debug.Log($"Level: {currentLevel}");
     }
 }
