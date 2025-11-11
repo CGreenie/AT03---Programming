@@ -7,7 +7,7 @@ public class DamageHealth : MonoBehaviour
     // Triggers on collision
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Ouch by: {damage}");
+        Debug.Log($"Player Damaged: -{damage}");
 
         if (other.tag == "Player")
         {

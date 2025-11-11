@@ -56,14 +56,11 @@ public class StatsAndLeveling : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game Over triggered.");
-
         if (currentHealth <= minHealth)
         {
             GetComponent<PlayerController>().enabled = false;
             isGameOver = true;
             Time.timeScale = 0f; // Stops all game time
-            Debug.Log("Game time stopped...");
 
             Debug.Log("Game Over.");
             Debug.Log("Press 'Spacebar' to respawn.");
@@ -77,8 +74,7 @@ public class StatsAndLeveling : MonoBehaviour
 
     public void Respawn()
     {
-        Time.timeScale = 01f;
-        // GetComponent<PlayerController>().enabled = true;
+        Time.timeScale = 01f; // Resumes all game time
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

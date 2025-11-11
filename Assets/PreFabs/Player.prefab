@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 7102970865458068073}
   - component: {fileID: 7089042686234172964}
   - component: {fileID: 8243184404274155613}
+  - component: {fileID: 2551057014869468305}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -402,6 +403,22 @@ MonoBehaviour:
   crouchSpeed: 2
   gravity: 1
   jumpForce: 0.3
+--- !u!114 &2551057014869468305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7565455433678771032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879b897fb2e41824c928316ae4aaf7a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  minHealth: 0
+  currentHealth: 0
+  maxExperience: 100
 --- !u!1 &8282852579912206925
 GameObject:
   m_ObjectHideFlags: 0
