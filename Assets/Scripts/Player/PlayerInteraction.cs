@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ public class PlayerInteraction : MonoBehaviour
     public Image crosshair;           // Crosshair Link
     //public Text infoPanel;            // Text UI Link
 
+    public UIManager UIManager;
+
     void Start()
     {
         
@@ -29,18 +32,21 @@ public class PlayerInteraction : MonoBehaviour
         {
             Debug.Log($"{objectHit.collider.name} detected.");
 
+            if (objectHit.collider.TryGetComponent(out IInteractable interactableObject))
+            {
+                UIManager.InteractPanelOn();
+            }
+
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (objectHit.collider.TryGetComponent(out IInteractable interactableObject))
-                {
-                    interactableObject.Interact();
-                }
+                interactableObject.Interact();
             }
 
         }
         else
         {
             Debug.Log("No object in range.");
+            UIManager.InteractPanelOff();
         }
 
         
