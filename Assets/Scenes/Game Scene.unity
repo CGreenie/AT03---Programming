@@ -274,7 +274,7 @@ MonoBehaviour:
   sprintSpeed: 10
   crouchSpeed: 2
   gravity: 1
-  jumpForce: 0.3
+  jumpForce: 0.2
 --- !u!114 &563554026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reach: 6
-  reachPlayer: 2
   crosshair: {fileID: 724978524}
 --- !u!1 &724978522
 GameObject:
@@ -497,7 +496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966020452}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08239566, y: 0.12746954, z: -0.0106266625, w: 0.988357}
+  m_LocalRotation: {x: 0.053273246, y: 0.0942215, z: -0.005049214, w: 0.9941121}
   m_LocalPosition: {x: 0, y: 0.96, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -659,7 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
   Composition:
-    ScreenPosition: {x: -0.12, y: 0.06}
+    ScreenPosition: {x: -0.08562595, y: 0.11185181}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -789,7 +788,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327590302}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08239566, y: 0.12746954, z: -0.01062666, w: 0.988357}
+  m_LocalRotation: {x: 0.05327307, y: 0.09422149, z: -0.005049202, w: 0.99411213}
   m_LocalPosition: {x: -1.19818, y: 1.91, z: -3.08006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1219,8 +1218,9 @@ GameObject:
   - component: {fileID: 1973747521}
   - component: {fileID: 1973747520}
   - component: {fileID: 1973747519}
+  - component: {fileID: 1973747523}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: RandomNumberCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1309,12 +1309,24 @@ Transform:
   m_GameObject: {fileID: 1973747518}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.11, z: 0}
+  m_LocalPosition: {x: 0, y: 1.11, z: 5.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1973747523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973747518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80975801e701f5498b7e378f60e0660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
