@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{A1007CDE-4833-8EB6-57FF-8BEE77FC6361}</ProjectGuid>
+    <ProjectGuid>{D6E193B1-9D65-7E70-4A0D-91CD69E518A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.InputSystem.RebindingUI</AssemblyName>

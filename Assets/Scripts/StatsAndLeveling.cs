@@ -17,9 +17,9 @@ public class StatsAndLeveling : MonoBehaviour
     public int currentHealth = 0;
 
     public int maxExperience = 100;
-    public static int currentExperience = 0; // Saved during lifetime of game
+    public int currentExperience = 0;
 
-    public static int playerLevel = 1; // Saved during lifetime of game
+    public int playerLevel = 1;
 
     void Start()
     {

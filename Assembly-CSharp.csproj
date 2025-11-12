@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2ACBDC76-7735-82E9-3F24-355D429E0DB3}</ProjectGuid>
+    <ProjectGuid>{66168E52-ECC4-3CFE-EAB3-8EDBB51782F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Collectibles\DamageHealth.cs" />
     <Compile Include="Assets\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\StatsAndLeveling.cs" />
+    <Compile Include="Assets\Scripts\SaveGame.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
