@@ -14,9 +14,10 @@ public class DialoguePlayer : MonoBehaviour
     public GameObject dialogueBox;
     public TextMeshProUGUI textbox;
     //below is a temp reference, replace with raycast object.trygetcomponent or whatever
-    public GameObject sphere;
-    
+
+
     public GameObject cameracontroller;
+    public GameObject freecamera;
     public TextMeshProUGUI leftButtontext;
     public TextMeshProUGUI rightButtontext;
 
@@ -38,14 +39,13 @@ public class DialoguePlayer : MonoBehaviour
 
     // Update is called once per frame
     //currently have a button press as a debug. Will change this later.
-    void Update()
+    
+
+    public void talk(GameObject partner)
     {
-        if (Input.GetKeyDown(KeyCode.I) && dialogueBox.activeInHierarchy == false)
+        if (dialogueBox.activeInHierarchy == false)
         {
-
-            displayDialogue(sphere.GetComponent<Dialogue>());
-
-
+             displayDialogue(partner.GetComponent<Dialogue>());
         }
     }
     /// <summary>
@@ -66,6 +66,7 @@ public class DialoguePlayer : MonoBehaviour
         current = words;
         gameObject.GetComponent<PlayerController>().enabled = false;
         cameracontroller.GetComponent<CameraController>().enabled = false;
+        freecamera.GetComponent<CinemachineCamera>().enabled = false;
         textbox.SetText(words.dialogue);
         leftButtontext.SetText(words.choice1);
         rightButtontext.SetText(words.choice2);
@@ -99,6 +100,7 @@ public class DialoguePlayer : MonoBehaviour
         dialogueBox.SetActive(false);
         gameObject.GetComponent<PlayerController>().enabled = true;
         cameracontroller.GetComponent<CameraController>().enabled = true;
+        freecamera.GetComponent<CinemachineCamera>().enabled = true;
     }
 
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Dialogue : MonoBehaviour
+public class Dialogue : MonoBehaviour, IInteractable
 {
     //Elise Avery
     //30128123
@@ -10,5 +10,9 @@ public class Dialogue : MonoBehaviour
     public string choice2;
     public string ifchoice1;
     public string ifchoice2;
-    
+     public void Interact()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<DialoguePlayer>().talk(gameObject);
+    }
 }
