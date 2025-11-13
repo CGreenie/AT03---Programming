@@ -66,7 +66,7 @@ public class DialoguePlayer : MonoBehaviour
         current = words;
         gameObject.GetComponent<PlayerController>().enabled = false;
         cameracontroller.GetComponent<CameraController>().enabled = false;
-        freecamera.GetComponent<CinemachineCamera>().enabled = false;
+        freecamera.SetActive(false);
         textbox.SetText(words.dialogue);
         leftButtontext.SetText(words.choice1);
         rightButtontext.SetText(words.choice2);
@@ -100,7 +100,7 @@ public class DialoguePlayer : MonoBehaviour
         dialogueBox.SetActive(false);
         gameObject.GetComponent<PlayerController>().enabled = true;
         cameracontroller.GetComponent<CameraController>().enabled = true;
-        freecamera.GetComponent<CinemachineCamera>().enabled = true;
+        freecamera.SetActive(true);
     }
 
 }
