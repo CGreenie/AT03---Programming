@@ -1,6 +1,8 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using JSONUtility;
+using System.Threading.Tasks;
 
 /**
  * By Shane Brooker
@@ -20,19 +22,39 @@ public class PlayerSaveData
 
 public class StatsAndLeveling : MonoBehaviour
 {
+    // Reference LoadData.cs & SaveData.cs for respawn function
+    private LoadData loadScript;
+    private SaveData saveScript;
+
+    // Assign audio in Inspector
+    public AudioClip playerRespawn;
+    private AudioSource audioRespawn;
+
+    // Respawn flags
     private bool isGameOver = false;
+    private Vector3 spawnPosition;
+
+    // Player Stats
     public Vector3 playerPosition;
-    public int maxHealth = 100;
+    private int maxHealth = 100;
     public int minHealth = 0;
     public int currentHealth = 0;
-
     public int maxExperience = 100;
     public int currentExperience = 0;
-
     public int playerLevel = 1;
 
     void Start()
     {
+        // Instantiate other scripts; set spawn point for Game Over condition
+        saveScript = FindAnyObjectByType<SaveData>();
+        loadScript = GetComponent<LoadData>();
+        audioRespawn = GetComponent<AudioSource>();
+        spawnPosition = transform.position;
+
+        if (loadScript == null)
+        {
+            Debug.Log("LoadData script not found in scene.");
+        }
         currentHealth = maxHealth;
         Debug.Log($"Player Level: {playerLevel}");
         Debug.Log($"Player Experience: {currentExperience} / {maxExperience}");
@@ -40,6 +62,7 @@ public class StatsAndLeveling : MonoBehaviour
 
     void Update()
     {
+        // Resumes game time on KeyDown when Game Over is triggered
         if (isGameOver == true && Input.GetKeyDown(KeyCode.Space) == true)
         {
             Respawn();
@@ -68,24 +91,33 @@ public class StatsAndLeveling : MonoBehaviour
     {
         if (currentHealth <= minHealth)
         {
-            GetComponent<PlayerController>().enabled = false;
-            isGameOver = true;
-            Time.timeScale = 0f; // Stops all game time
-
             Debug.Log("Game Over.");
             Debug.Log("Press 'Spacebar' to respawn.");
 
-            if (Input.GetKeyDown(KeyCode.Space) == true)
-            {
-                Respawn();
-            }
+            // auto-save to keep progress on death
+            saveScript.SavePlayerData(this, spawnPosition);
+            
+            isGameOver = true;
+
+            // Stops all movement and inputs; Only resumes when SpaceBar is pressed, see Update()
+            Time.timeScale = 0f;
         }
     }
 
     public void Respawn()
     {
+        // Player can only be moved when CharacterController is disabled
+        GetComponent<CharacterController>().enabled = false;
         Time.timeScale = 01f; // Resumes all game time
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        loadScript.LoadPlayerData(this, spawnPosition, this.gameObject); // Loads auto-saved stats; moves Player to spawn point
+        GetComponent<CharacterController>().enabled = true;
+
+        audioRespawn.PlayOneShot(playerRespawn);
+        isGameOver = false;
+        currentHealth = maxHealth;
+        Debug.Log($"Player Level: {playerLevel}");
+        Debug.Log($"Player Experience: {currentExperience} / {maxExperience}");
+        Debug.Log($"Player Health: {currentHealth}");
     }
 
     public void Heal(int heal)

@@ -5,23 +5,25 @@ public class SaveData : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        StatsAndLeveling playerData = other.GetComponent<StatsAndLeveling>();
-        SavePlayerData(playerData, other.transform);
+        if (other.tag == "Player")
+        {
+            StatsAndLeveling playerData = other.GetComponent<StatsAndLeveling>();
+            SavePlayerData(playerData, other.transform.position);
+        }
     }
 
-    public void SavePlayerData(StatsAndLeveling playerData, Transform playerTransform)
+    public void SavePlayerData(StatsAndLeveling playerData, Vector3 playerTransform)
     {
         PlayerSaveData saveData = new PlayerSaveData
         {
-            playerPosition = playerTransform.position,
+            playerPosition = playerTransform,
             currentHealth = playerData.currentHealth,
             currentExperience = playerData.currentExperience,
             playerLevel = playerData.playerLevel,
         };
 
+        // Saves in format: {"playerPosition{x,y,z}, "currentHealth", "currentExperience", "playerLevel"}
         string json = JsonUtility.ToJson(saveData);
-        Debug.Log($"Saving JSON: {json}");
-
 
         string folderPath = Path.Combine(Application.dataPath, "Save Files");
         string filePath = Path.Combine(folderPath, "PlayerSave.json");
@@ -32,17 +34,7 @@ public class SaveData : MonoBehaviour
             Directory.CreateDirectory(folderPath);
         }
 
-        try
-        {
-            File.WriteAllText(filePath, json);
-            Debug.Log($"Game saved at: {filePath}");
-        }
-        catch (System.Exception e)
-        {
-            Debug.Log($"Failed to save game.");
-        }
+        File.WriteAllText(filePath, json);
+        Debug.Log($"Game saved at: {filePath}");
     }
-
-
-
 }
