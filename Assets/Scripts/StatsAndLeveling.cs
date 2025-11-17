@@ -136,6 +136,7 @@ public class StatsAndLeveling : MonoBehaviour
     public void AddExperience(int experience)
     {
         currentExperience += experience;
+        saveScript.SavePlayerData(this, transform.position);
         Debug.Log($"Experience: {currentExperience} / {maxExperience}");
 
         if (currentExperience >= maxExperience)
