@@ -9,9 +9,19 @@ using UnityEngine.SceneManagement;
  * Personal Email: shane.brooker17@gmail.com
 **/
 
+[System.Serializable]
+public class PlayerSaveData
+{
+    public Vector3 playerPosition;
+    public int currentHealth;
+    public int currentExperience;
+    public int playerLevel;
+}
+
 public class StatsAndLeveling : MonoBehaviour
 {
     private bool isGameOver = false;
+    public Vector3 playerPosition;
     public int maxHealth = 100;
     public int minHealth = 0;
     public int currentHealth = 0;
