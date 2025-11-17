@@ -3,8 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    //Elise Avery
+    //30128123
+    //grab the options panel to show or hide it. 
     public GameObject options_panel;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // This script basically just lets you press buttons in the main menu.
     void Start()
     {
         

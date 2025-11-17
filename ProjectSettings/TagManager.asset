@@ -7,6 +7,7 @@ TagManager:
   - Damage Sphere
   - Health Sphere
   - Experience Cube
+  - Save Pad
   layers:
   - Default
   - TransparentFX
