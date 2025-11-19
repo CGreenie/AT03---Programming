@@ -1,3 +1,4 @@
+using JSONUtility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,8 +27,13 @@ public class MainMenu : MonoBehaviour
 
     public void on_loadgame_pressed()
     {
-        Debug.Log("Loading saves isn't implemented, so this just opens the main scene. Fix this later!");
         SceneManager.LoadScene("Test Scene");
+
+        LoadData loadScript = FindAnyObjectByType<LoadData>();
+        if (loadScript != null)
+        {
+            loadScript.LoadPlayerDataFromMenu();
+        }
     }
 
     public void on_options_pressed()

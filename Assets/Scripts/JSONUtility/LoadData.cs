@@ -25,6 +25,62 @@ namespace JSONUtility
             }
         }
 
+        public void LoadPlayerDataFromMenu()
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+            if (playerObject == null)
+            {
+                Debug.Log("Player object not found in scene");
+                return;
+            }
+
+            StatsAndLeveling playerData = playerObject.GetComponent<StatsAndLeveling>();
+
+            if (playerData == null)
+            {
+                Debug.Log("StatsAndLeveling script not on Player");
+                return;
+            }
+
+            string folderPath = Path.Combine(Application.dataPath, "Save Files");
+            string filePath = Path.Combine(folderPath, "PlayerSave.json");
+
+            if (!File.Exists(filePath))
+            {
+                Debug.Log("No save file found.");
+                return;
+            }
+
+            string json = File.ReadAllText(filePath);
+            PlayerSaveData saveData = JsonUtility.FromJson<PlayerSaveData>(json);
+
+            // Load the saved data
+            playerData.playerPosition = saveData.playerPosition;
+            playerData.currentHealth = saveData.currentHealth;
+            playerData.currentExperience = saveData.currentExperience;
+            playerData.playerLevel = saveData.playerLevel;
+
+            // Move player to saved position
+            CharacterController cc = playerObject.GetComponent<CharacterController>();
+            if (cc != null)
+            {
+                cc.enabled = false;
+            }
+
+            playerObject.transform.position = saveData.playerPosition;
+
+            if (cc != null)
+            {
+                cc.enabled = true;
+            }
+
+            Debug.Log("Player data loaded successfully.");
+            Debug.Log($"Player Level: {playerData.playerLevel}");
+            Debug.Log($"Player Experience: {playerData.currentExperience} / {playerData.maxExperience}");
+            Debug.Log($"Player Health: {playerData.currentHealth}");
+        }
+
         public void LoadPlayerData(StatsAndLeveling playerData, Vector3 playerTransform, GameObject? playerObject)
         {
             if (playerData == null)

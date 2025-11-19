@@ -8,6 +8,7 @@ TagManager:
   - Health Sphere
   - Experience Cube
   - Save Pad
+  - Load Pad
   layers:
   - Default
   - TransparentFX
