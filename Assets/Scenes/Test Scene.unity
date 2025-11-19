@@ -255,9 +255,10 @@ GameObject:
   - component: {fileID: 472014511}
   - component: {fileID: 472014510}
   - component: {fileID: 472014516}
+  - component: {fileID: 472014517}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -410,13 +411,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 2095340181}
   textbox: {fileID: 891179237}
-  sphere: {fileID: 1329366670}
   cameracontroller: {fileID: 1207059000}
+  freecamera: {fileID: 0}
   leftButtontext: {fileID: 825387676}
   rightButtontext: {fileID: 1977601555}
   rightButton: {fileID: 793492828}
   leftButton: {fileID: 510800622}
   continueButton: {fileID: 1716199999}
+--- !u!114 &472014517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472014509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879b897fb2e41824c928316ae4aaf7a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRespawn: {fileID: 0}
+  playerPosition: {x: 0, y: 0, z: 0}
+  minHealth: 0
+  currentHealth: 0
+  maxExperience: 100
+  currentExperience: 0
+  playerLevel: 1
 --- !u!1 &472164131
 GameObject:
   m_ObjectHideFlags: 0

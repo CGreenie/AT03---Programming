@@ -1,4 +1,5 @@
 using JSONUtility;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,12 +28,24 @@ public class MainMenu : MonoBehaviour
 
     public void on_loadgame_pressed()
     {
+        StartCoroutine(LoadGameCoroutine());
+    }
+
+    private IEnumerator LoadGameCoroutine()
+    {
         SceneManager.LoadScene("Test Scene");
+
+        // Wait for the scene to finish loading
+        yield return null;
 
         LoadData loadScript = FindAnyObjectByType<LoadData>();
         if (loadScript != null)
         {
             loadScript.LoadPlayerDataFromMenu();
+        }
+        else
+        {
+            Debug.Log("LoadData script not found in the loaded scene");
         }
     }
 
